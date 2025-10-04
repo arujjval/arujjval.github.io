@@ -1,12 +1,78 @@
----
-layout: default
----
-<h1>My Blog</h1>
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
-```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+    </button>
+    
+    <div class="container">
+        <main class="main-content">
+            <!-- Split-screen layout for desktop -->
+            <section class="intro-section">
+                <!-- Left side: Image placeholder -->
+                <div class="image-container">
+                    <img src="public/photo.png" alt="Professional portrait" class="profile-image">
+                </div>
+                
+                <!-- Right side: Introduction -->
+                <div class="intro-text">
+                    <h2 class="headline">Arujjwal Negi</h2>
+                    <h3 class="sub-headline">Developer</h3>
+                    <p class="bio">
+                        Hi, I'm Arujjwal, a Computer Science student. I focus on web and app development, mainly using the React framework. I am active in open source, particularly with Kubernetes, and was a part of the Kubernetes Release Team for v1.35. When I'm not coding or contributing, 
+                        I like to read books and think about how great engineering can solve real-world problems.</p>
+                </div>
+            </section>
+            
+            <!-- Links section -->
+            <section class="links-section">
+                <a href="https://github.com/arujjval" class="link-button github" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/arujjwal" class="link-button linkedin" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+                <a href="https://x.com/arujjval" class="link-button twitter" target="_blank" rel="noopener noreferrer">X</a>
+                <a href="mailto:arujjwal73@gmail.com" class="link-button email">
+                    Email
+                </a>
+            </section>
+        </main>
+    </div>
+    
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        const body = document.body;
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+    </script>
+</body>
+</html>
